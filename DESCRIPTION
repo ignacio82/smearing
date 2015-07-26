@@ -1,0 +1,9 @@
+Package: smearing
+Type: Package
+Title: Fortran smearing
+Version: 0.1
+Date: 2015-07-26
+Authors@R: person("Ignacio", "Martinez", email = "ignacio82@gmail.com", role = c("aut", "cre"))
+Description: Smearing function using a Fortran subroutine
+License: MIT
+LazyData: TRUE

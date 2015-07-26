@@ -1,0 +1,2 @@
+useDynLib(smearing)
+exportPattern("^[[:alpha:]]+")
