@@ -7,3 +7,5 @@ Authors@R: person("Ignacio", "Martinez", email = "ignacio82@gmail.com", role = c
 Description: Smearing function using a Fortran subroutine
 License: MIT
 LazyData: TRUE
+Imports:
+    microbenchmark
