@@ -33,7 +33,7 @@ subroutine subsmearing(d, i, nMCd, nPeriodT, nPeriods, DF, theta, wm)
     diff = 0.0d0
     wm = 0.0d0
     epredC = exp(DF(:,4) + (theta(:,d) * DF(:,1)))
-    epredT = exp(DF(:,4) - (theta(:,d) * (1-DF(:,1))))
+    epredT = exp(DF(:,4) - (theta(:,d) * (1.d0-DF(:,1))))
 
     do j=1,i
         B1(:,j)=epredT(j)
