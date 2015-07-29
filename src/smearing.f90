@@ -28,7 +28,7 @@ subroutine subsmearing(d, i, nMCd, nPeriodT, nPeriods, DF, theta, wm)
     double precision, dimension(i)                      :: epredC, epredT, diff, A1, A2
     double precision, dimension(i,i)                    :: B1, B2
     integer                                             :: j, Period, jj
-    double precision                                    :: sumWeights
+    double precision                                    :: sumWeights, sumWeights_inv
 
     diff = 0.0d0
     wm = 0.0d0
