@@ -28,7 +28,7 @@ subroutine subsmearing(d, i, nMCd, nPeriodT, nPeriods, DF, theta, wm)
     double precision, dimension(i)                      :: epredC, epredT, diff, A1, A2
     double precision, dimension(i,i)                    :: B1, B2
     integer                                             :: j, Period, jj
-    double precision                                    :: sumWeights, sumWeights_inv
+    double precision                                    :: sumWeights_inv
 
     diff = 0.0d0
     wm = 0.0d0
@@ -52,9 +52,9 @@ subroutine subsmearing(d, i, nMCd, nPeriodT, nPeriods, DF, theta, wm)
 
     do jj =1, nPeriods
         ALLOCATE(out(nPeriodT(jj),7))
-        CALL subsetPeriod(bigDF, i, 8, nPeriodT(jj), jj, out) !Filters data
-        sumWeights = sum(out(:,2))
-        sumWeights_inv = 1.d0/sumWeights
+        CALL subsetPeriod(bigDF, i, 8, nPeriodT(jj), jj, out, sumWeights_inv) !Filters data
+        !sumWeights = sum(out(:,2))
+        !sumWeights_inv = 1.d0/sumWeights
         do j=1, nPeriodT(jj)
             wm(jj) = wm(jj) + (out(j,7)*out(j,2)*sumWeights_inv)
         end do
@@ -63,11 +63,13 @@ subroutine subsmearing(d, i, nMCd, nPeriodT, nPeriods, DF, theta, wm)
 
 end subroutine subsmearing
 
-subroutine subsetPeriod(A, rowA, colA, rowB, Period, B)
+subroutine subsetPeriod(A, rowA, colA, rowB, Period, B, sumWeights_inv)
     double precision, dimension(rowA, colA), intent(in)    :: A
     integer, intent(in)                                    :: rowA, colA, rowB, Period
     double precision, dimension(rowB,colA-1), intent(out)  :: B
+    double precision, intent(out)                          :: sumWeights_inv
     integer                                                :: i, pos
+    double precision                                       :: sumWeights
 
     pos = 1
     do i = 1, size(A,1)
@@ -77,6 +79,8 @@ subroutine subsetPeriod(A, rowA, colA, rowB, Period, B)
             pos = pos+1
         end if
     end do
+    sumWeights = sum(B(:,2))
+    sumWeights_inv = 1.d0/sumWeights
 end subroutine subsetPeriod
 
 end module smearingmodule
