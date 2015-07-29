@@ -9,6 +9,6 @@ smearing <- function(DF, theta){
                  DF = unlist(DF),
                  theta = unlist(theta),
                  wm = numeric(ncoltheta*nPeriods))$wm
-  dim(wm) <- c(ncoltheta, nPeriods)
+  dim(wm) <- c(nPeriods,ncoltheta)
   return(wm)
 }

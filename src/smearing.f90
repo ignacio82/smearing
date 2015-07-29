@@ -7,11 +7,11 @@ subroutine smearing(i, nMCd, nPeriodT, nPeriods, DF, theta, wm) bind(C, name="sm
     integer(c_int), intent(in), dimension(nPeriods)            :: nPeriodT
     real(c_double), intent(in), dimension(i,5)        :: DF
     real(c_double), intent(in), dimension(i,nMCd)     :: theta
-    real(c_double), dimension(nMCd, nPeriods), intent(out)  :: wm
+    real(c_double), dimension(nPeriods,nMCd), intent(out)  :: wm
     integer                                             :: d
 
     do d=1,nMCd
-        CALL subsmearing(d, i, nMCd, nPeriodT, nPeriods, DF, theta, wm(d,:))
+        CALL subsmearing(d, i, nMCd, nPeriodT, nPeriods, DF, theta, wm(:,d))
     end do
 
 end subroutine smearing
