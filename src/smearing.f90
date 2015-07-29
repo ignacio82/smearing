@@ -53,8 +53,6 @@ subroutine subsmearing(d, i, nMCd, nPeriodT, nPeriods, DF, theta, wm)
     do jj =1, nPeriods
         ALLOCATE(out(nPeriodT(jj),7))
         CALL subsetPeriod(bigDF, i, 8, nPeriodT(jj), jj, out, sumWeights_inv) !Filters data
-        !sumWeights = sum(out(:,2))
-        !sumWeights_inv = 1.d0/sumWeights
         do j=1, nPeriodT(jj)
             wm(jj) = wm(jj) + (out(j,7)*out(j,2)*sumWeights_inv)
         end do
